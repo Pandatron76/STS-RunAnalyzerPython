@@ -337,6 +337,21 @@ def main():
     character_paths = create_character_paths(target_path, include_characters)
     run_set_dict = create_run_set_dict(include_characters)
 
+    print("\nTargetPath: %s" % target_path)
+    print("Characters to include in the report: ", include_characters)
+
+    if len(include_characters) == 1 and '' in include_characters:
+        print("\nNo characters have been specified in the config for 'CharactersToInclude'")
+        print("Exiting script")
+        exit()
+
+    if len(character_paths) == 0:
+        print("\nThe TargetPath (%s) does not include any of the character folders specified in the config.ini"
+              % target_path)
+        print("Please check the folder location: %s" % target_path)
+        print("Exiting script")
+        exit()
+
     # Holds a collection of all Slay the Spire runs
     run_set = set([])
 
