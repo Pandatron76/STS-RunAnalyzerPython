@@ -176,7 +176,7 @@ def enemies_per_floor(run_set):
 
 
 def event_choices_per_floor(run_set):
-    #TODO: Update to including what specific decisions they chose
+    # TODO: Update to including what specific decisions they chose
     floor_event_dict = math_funcs.events_encountered_per_floor(run_set)
 
     for event_choice, choices in sorted(floor_event_dict.items()):
