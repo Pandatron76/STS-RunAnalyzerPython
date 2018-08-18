@@ -23,38 +23,41 @@ Make sure Python 3.6.5 is installed on the machine before running the script
 Navigate back to the root directory and run the "main.py" script
 
 ## F.A.Q
-```
-Q: Why write this in Python? Wouldn't Rails or JavaScript provide a better visual representation?
+> Q: Why write this in Python? Wouldn't Rails or JavaScript provide a better visual representation?
 
-A: I wanted to try a language that was structural different than languages I worked with in the pass (Java and Ruby) and Python seemed to be a nice fit. There was a consideration of writing this in JavaScript (which I will still likely do) but once again I wanted to use something different than what I am normally familiar with. Django I think would also be an option if I wanted to present it visual as well.
-```
+> A: I wanted to try a language that was structural different than languages I worked with in the pass (Java and Ruby) and Python seemed to be a nice fit. There was a consideration of writing this in JavaScript (which I will still likely do) but once again I wanted to use something different than what I am normally familiar with. Django I think would also be an option if I wanted to present it visual as well.
 
-```
-Q: Aren't there already sites and tools out there that perform what this script does?
+> Q: Aren't there already sites and tools out there that perform what this script does?
 
-A: The short answer is yes and kind of... The long answer is I had trouble understanding how the information was derived on those sites or an individual(s) efforts when reviewing their reports. For myself the best way to understanding something is trying it on my own. By making this an open source project, it will hopefully give people a better idea of one possible way(s) of how all this information is being compiled. Equally there is some additional functionality I wish to incorporate that is a bit more in the weeds (for example: by adding card 'x' to your current deck, it impacts the overall damage of your starting hand by 'y')
-```
+> A: The short answer is yes and kind of... The long answer is I had trouble understanding how the information was derived on those sites or an individual(s) efforts when reviewing their reports. For myself the best way to understanding something is trying it on my own. By making this an open source project, it will hopefully give people a better idea of one possible way(s) of how all this information is being compiled. Equally there is some additional functionality I wish to incorporate that is a bit more in the weeds (for example: by adding card 'x' to your current deck, it impacts the overall damage of your starting hand by 'y')
 
 > Q: Can I send you my ideas?
+
 > A: Yes, ideas are appreicated. Submit an issue with the tag "Feature" and I will take a look at it.
 
 > Q: How do I report on issues regarding incorrect calculations?
+
 > A: Its possible something may not be present information correctly. Submit an issue with the 'Bug' tag and mention what keys(options) were enabled when the issue occured. 
 
 > Q: Can I suggest a better name for what some of the configuration flags/options are actually doing?
+
 > A: Sure! There's a old saying in coding that goes "There are only two hard things in Computer Science: cache invalidation and naming things" so its very likely something is named poorly. Submit an issue with the tag "Feature" and I will take a look at it.
 
 > Q: Do you plan to add unit test?
+
 > A: Yes, it is honestly something I should have done along the way but the additional features took priority. I realize that is a terrible excuse and plan to implement them now that the project is on GitHub. However I do understand that some considerable portions of the code will need to be rewritten to make it unit testable.
 
 > Q: What if I encounter a run time error?
+
 > A: Make sure your running Pythong 3.6.5 or higher. Next, I would make sure your configuration file is setup properly.
 If there is still an issue, feel free to submit a issue with the tag 'Bug'. Most of the .run files I worked with is from my own playthroughs so its possible that older playthroughs (or playthroughs on beta branch) might generate issues.
 
 > Q: Can I contribute?
+
 > A: Sure! See the section '[Contributing]' for more information. This is my first Python project so I am more than open to suggestions on how the code base can be improved.
 
 > Q: Can I provide feedback on your Read.me? I found it difficult to read.
+
 > A: I have not written many of these so in general I am poor at writting them. Feel free to submit a pull request with the recommended changes.
 
 ## Contributing
