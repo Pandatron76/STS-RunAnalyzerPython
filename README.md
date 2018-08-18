@@ -35,50 +35,27 @@ Q: Aren't there already sites and tools out there that perform what this script 
 A: The short answer is yes and kind of... The long answer is I had trouble understanding how the information was derived on those sites or an individual(s) efforts when reviewing their reports. For myself the best way to understanding something is trying it on my own. By making this an open source project, it will hopefully give people a better idea of one possible way(s) of how all this information is being compiled. Equally there is some additional functionality I wish to incorporate that is a bit more in the weeds (for example: by adding card 'x' to your current deck, it impacts the overall damage of your starting hand by 'y')
 ```
 
-```
-Q: Can I send you my ideas?
+> Q: Can I send you my ideas?
+> A: Yes, ideas are appreicated. Submit an issue with the tag "Feature" and I will take a look at it.
 
-A: Yes, ideas are appreicated. Submit an issue with the tag "Feature" and I will take a look at it.
-```
+> Q: How do I report on issues regarding incorrect calculations?
+> A: Its possible something may not be present information correctly. Submit an issue with the 'Bug' tag and mention what keys(options) were enabled when the issue occured. 
 
-```
-Q: How do I report on issues regarding incorrect calculations?
+> Q: Can I suggest a better name for what some of the configuration flags/options are actually doing?
+> A: Sure! There's a old saying in coding that goes "There are only two hard things in Computer Science: cache invalidation and naming things" so its very likely something is named poorly. Submit an issue with the tag "Feature" and I will take a look at it.
 
-A: Its possible something may not be present information correctly.
-Submit an issue with the 'Bug' tag and mention what keys(options) were enabled when the issue occured. 
-```
+> Q: Do you plan to add unit test?
+> A: Yes, it is honestly something I should have done along the way but the additional features took priority. I realize that is a terrible excuse and plan to implement them now that the project is on GitHub. However I do understand that some considerable portions of the code will need to be rewritten to make it unit testable.
 
-```
-Q: Can I suggest a better name for what some of the configuration flags/options are actually doing?
-A: Sure!
-There's a old saying in coding that goes "There are only two hard things in Computer Science: cache invalidation and naming things" so its very likely something is named poorly. 
-ubmit an issue with the tag "Feature" and I will take a look at it.
-```
-
-```
-Q: Do you plan to add unit test?
-A: Yes, it is honestly something I should have done along the way but the additional features took priority.
-I realize that is a terrible excuse and plan to implement them now that the project is on GitHub.
-However I do understand that some considerable portions of the code will need to be rewritten to make it unit testable.
-```
-
-```
-Q: What if I encounter a run time error?
-A: Make sure your running Pythong 3.6.5 or higher. Next, I would make sure your configuration file is setup properly.
+> Q: What if I encounter a run time error?
+> A: Make sure your running Pythong 3.6.5 or higher. Next, I would make sure your configuration file is setup properly.
 If there is still an issue, feel free to submit a issue with the tag 'Bug'. Most of the .run files I worked with is from my own playthroughs so its possible that older playthroughs (or playthroughs on beta branch) might generate issues.
-```
 
-```
-Q: Can I contribute?
-A: Sure! See the section '[Contributing]' for more information.
-This is my first Python project so I am more than open to suggestions on how the code base can be improved.
-```
+> Q: Can I contribute?
+> A: Sure! See the section '[Contributing]' for more information. This is my first Python project so I am more than open to suggestions on how the code base can be improved.
 
-```
-Q: Can I provide feedback on your Read.me? I found it difficult to read.
-A: I have not written many of these so in general I am poor at writting them.
-Feel free to submit a pull request with the recommended changes
-```
+> Q: Can I provide feedback on your Read.me? I found it difficult to read.
+> A: I have not written many of these so in general I am poor at writting them. Feel free to submit a pull request with the recommended changes.
 
 ## Contributing
 1. Fork the project
@@ -89,6 +66,8 @@ Feel free to submit a pull request with the recommended changes
 
 ## Acknowledgements
 To my friends that were willing to listen to me ramble on about one player card games and Python.
+
+The Doctor Who marathon that played in the background as I was writing this.
 
 SlayTheSpire streamers in general. They are fun to have playing in the background (and watch) while I write this sort of stuff.  There's a couple that I follow and mostly lurk in the channels but specific shoutouts to the one(s) that spend a great deal of time thinking about the meta details and analzying the game in great detail
 
