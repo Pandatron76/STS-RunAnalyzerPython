@@ -272,11 +272,12 @@ def add_to_run_set(run_set_dict, current_run, character_name_from_path):
 
 
 def create_character_paths(target_path, include_characters):
+    target_path = target_path.strip('\"').strip('\'')
     return [target_path + '\\' + character for character in os.listdir(target_path)
             if character in include_characters]
 
 
-# TODO: Seperate each of these out into their own function to provided better unit test coverage
+# TODO: Separate each of these out into their own function to provided better unit test coverage
 def store_nonlist_json(parsed, current_run):
     current_run.ascension = parsed.get('ascension_level')
     current_run.build_version = parsed.get('build_version')
@@ -337,8 +338,9 @@ def main():
     character_paths = create_character_paths(target_path, include_characters)
     run_set_dict = create_run_set_dict(include_characters)
 
-    print("\nTargetPath: %s" % target_path)
-    print("Characters to include in the report: ", include_characters)
+    print("\nInformation from config.ini file...")
+    print("  TargetPath specified:\n    %s" % target_path)
+    print("  CharactersToInclude:\n    %s" % include_characters)
 
     if len(include_characters) == 1 and '' in include_characters:
         print("\nNo characters have been specified in the config for 'CharactersToInclude'")
