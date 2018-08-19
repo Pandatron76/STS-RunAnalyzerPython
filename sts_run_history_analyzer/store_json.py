@@ -12,22 +12,42 @@ from relics_obtained import RelicsObtained
 def boss_relic_info(parsed, current_run):
     act_count = 0
     for relic in parsed['boss_relics']:
-        if relic['picked']:
+        if isinstance(None, type(relic.get('picked'))) is False:
+            if relic['picked']:
+                if act_count == 0:
+                    current_run.add_boss_relic_picked_act1(relic['picked'])
+                elif act_count == 1:
+                    current_run.add_boss_relic_picked_act2(relic['picked'])
+                else:
+                    print('Issue with boss relic/picked')
+        elif isinstance(None, type(relic.get('picked'))) is True:
             if act_count == 0:
-                current_run.add_boss_relic_picked_act1(relic['picked'])
+                current_run.add_boss_relic_picked_act1('No boss relic was picked for Act One')
             elif act_count == 1:
-                current_run.add_boss_relic_picked_act2(relic['picked'])
+                current_run.add_boss_relic_picked_act2('No boss relic was picked for Act Two')
             else:
                 print('Issue with boss relic/picked')
+        else:
+            print('Issue determining if [boss_relic][picked] is a None type')
 
-        if relic['not_picked']:
-            for relic_np in relic['not_picked']:
-                if act_count == 0:
-                    current_run.add_boss_relic_not_picked_act1(relic_np)
-                elif act_count == 1:
-                    current_run.add_boss_relic_not_picked_act2(relic_np)
-                else:
-                    print('Issue with boss relic/not picked')
+        if isinstance(None, type(relic.get('not_picked'))) is False:
+            if relic['not_picked']:
+                for relic_np in relic['not_picked']:
+                    if act_count == 0:
+                        current_run.add_boss_relic_not_picked_act1(relic_np)
+                    elif act_count == 1:
+                        current_run.add_boss_relic_not_picked_act2(relic_np)
+                    else:
+                        print('Issue with boss relic/not picked')
+        elif isinstance(None, type(relic.get('not_picked'))) is True:
+            if act_count == 0:
+                current_run.add_boss_relic_picked_act1('No boss relic was not picked for Act One')
+            elif act_count == 1:
+                current_run.add_boss_relic_picked_act2('No boss relic was not picked for Act Two')
+            else:
+                print('Issue with boss relic/picked')
+        else:
+            print('Issue determining if [boss_relic][not_picked] is a None type')
 
         act_count += act_count + 1
     return current_run
