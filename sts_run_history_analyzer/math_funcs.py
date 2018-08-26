@@ -345,5 +345,3 @@ def win_lost_record(run_set):
             print('No win or lost recorded')
 
     return total_wins, total_loses
-
-

@@ -50,4 +50,3 @@ def floor_reached(run_set):
             return sum(run.floor_reached for run in run_set) / len(run_set)
         except ZeroDivisionError:
             return 0
-

@@ -5,249 +5,253 @@ import sts_run_data
 import store_json
 import print_single_run
 import print_all_runs
-from config_helper import read_config, read_target_path, read_config_boolean, config_option_to_list
+import config_helper
 
 
-# TODO: Seperate each of these out into their own function to provided better unit test coverage
+# TODO: Separate each of these out into their own function to provided better unit test coverage
 def print_all_summary(config, character_run_set):
-    config_section = 'PRINT_ALL_RUNS'
+    section_dict = config_helper.section_to_bool_dict(config, 'PRINT_ALL_RUNS')
 
-    if config.getboolean(config_section, 'WinLostRecords') is True:
+    if section_dict['WinLostRecords'] is True:
         print_all_runs.win_lost_records(character_run_set)
 
-    if config.getboolean(config_section, 'CampfireStats') is True:
+    if section_dict['CampfireStats'] is True:
         print_all_runs.campfire_stats(character_run_set)
 
-    if config.getboolean(config_section, 'TotalCampfiresVisited') is True:
+    if section_dict['TotalCampfiresVisited'] is True:
         print_all_runs.total_campfires_visited(character_run_set)
 
-    if config.getboolean(config_section, 'AvgCampfiresVisited') is True:
+    if section_dict['AvgCampfiresVisited'] is True:
         print_all_runs.avg_campfires_visited(character_run_set)
 
-    if config.getboolean(config_section, 'TotalCampfiresRested') is True:
+    if section_dict['TotalCampfiresRested'] is True:
         print_all_runs.total_campfires_rested(character_run_set)
 
-    if config.getboolean(config_section, 'AvgCampfiresRested') is True:
+    if section_dict['AvgCampfiresRested'] is True:
         print_all_runs.avg_campfires_rested(character_run_set)
 
-    if config.getboolean(config_section, 'TotalCampfiresUpgraded') is True:
+    if section_dict['TotalCampfiresUpgraded'] is True:
         print_all_runs.total_campfires_upgraded(character_run_set)
 
-    if config.getboolean(config_section, 'AvgCampfiresUpgraded') is True:
+    if section_dict['AvgCampfiresUpgraded'] is True:
         print_all_runs.avg_campfires_upgraded(character_run_set)
 
-    if config.getboolean(config_section, 'CampfireRestPerFloor') is True:
+    if section_dict['CampfireRestPerFloor'] is True:
         print_all_runs.campfire_choices_rest(character_run_set)
 
-    if config.getboolean(config_section, 'CampfireUpgradedPerFloor') is True:
+    if section_dict['CampfireUpgradedPerFloor'] is True:
         print_all_runs.campfire_choices_upgraded(character_run_set)
 
-    if config.getboolean(config_section, 'HighestMaxHP') is True:
+    if section_dict['HighestMaxHP'] is True:
         print_all_runs.highest_max_hp(character_run_set)
 
-    if config.getboolean(config_section, 'HighestScore') is True:
+    if section_dict['HighestScore'] is True:
         print_all_runs.highest_score(character_run_set)
 
-    if config.getboolean(config_section, 'LowestMaxHP') is True:
+    if section_dict['LowestMaxHP'] is True:
         print_all_runs.lowest_max_hp(character_run_set)
 
-    if config.getboolean(config_section, 'LowestScore') is True:
+    if section_dict['LowestScore'] is True:
         print_all_runs.lowest_score(character_run_set)
 
-    if config.getboolean(config_section, 'MostGold') is True:
+    if section_dict['MostGold'] is True:
         print_all_runs.most_gold(character_run_set)
 
-    if config.getboolean(config_section, 'ItemsPurchasedCount') is True:
+    if section_dict['ItemsPurchasedCount'] is True:
         print_all_runs.items_purchased_count(character_run_set)
 
-    if config.getboolean(config_section, 'RelicCount') is True:
+    if section_dict['RelicCount'] is True:
         print_all_runs.relic_count(character_run_set)
 
-    if config.getboolean(config_section, 'PotionsDataSpawned') is True:
+    if section_dict['PotionsDataSpawned'] is True:
         print_all_runs.potions_data_spawned(character_run_set)
 
-    if config.getboolean(config_section, 'PotionsDataUsed') is True:
+    if section_dict['PotionsDataUsed'] is True:
         print_all_runs.potions_data_used(character_run_set)
 
-    if config.getboolean(config_section, 'PotionsDataObtained') is True:
+    if section_dict['PotionsDataObtained'] is True:
         print_all_runs.potions_data_obtained(character_run_set)
 
-    if config.getboolean(config_section, 'EnemyEncounterCount') is True:
+    if section_dict['EnemyEncounterCount'] is True:
         print_all_runs.enemy_encounter_count(character_run_set)
 
-    if config.getboolean(config_section, 'EnemiesEncounteredPerFloor') is True:
+    if section_dict['EnemiesEncounteredPerFloor'] is True:
         print_all_runs.enemies_per_floor(character_run_set)
 
-    if config.getboolean(config_section, 'CumulativeDamagePerEnemy') is True:
+    if section_dict['CumulativeDamagePerEnemy'] is True:
         print_all_runs.cumulative_dmg_enemy(character_run_set)
 
-    if config.getboolean(config_section, 'EventChoicesPerFloor') is True:
+    if section_dict['EventChoicesPerFloor'] is True:
         print_all_runs.event_choices_per_floor(character_run_set)
 
-    if config.getboolean(config_section, 'AvgFloorReached') is True:
+    if section_dict['AvgFloorReached'] is True:
         print_all_runs.avg_floor_reached(character_run_set)
 
-    if config.getboolean(config_section, 'AvgScore') is True:
+    if section_dict['AvgScore'] is True:
         print_all_runs.avg_score(character_run_set)
 
-    if config.getboolean(config_section, 'CardsPickedPerFloor') is True:
+    if section_dict['CardsPickedPerFloor'] is True:
         print_all_runs.cards_picked_per_floor(character_run_set)
 
-    if config.getboolean(config_section, 'Overview') is True:
+    if section_dict['Overview'] is True:
         print_all_runs.details(character_run_set)
 
+    if section_dict['ItemsPurchasedCount'] is True:
+        print_all_runs.items_purchased_count(character_run_set)
 
-# TODO: Seperate each of these out into their own function to provided better unit test coverage
+
+# TODO: Separate each of these out into their own function to provided better unit test coverage
 def print_individual_summary(config, parsed, current_run):
-    single_run_config = 'PRINT_SINGLE_RUN'
+    section_dict = config_helper.section_to_bool_dict(config, 'PRINT_SINGLE_RUN')
 
-    # Print: non-list json information
-    if config.getboolean(single_run_config, 'FileName') is True:
+    # Updating, old code
+    if section_dict['FileName'] is True:
         print_single_run.file_name(current_run)
 
-    if config.getboolean(single_run_config, 'BuildVersion') is True:
+    if section_dict['BuildVersion'] is True:
         print_single_run.build_version(current_run)
 
-    if config.getboolean(single_run_config, 'Timestamp') is True:
+    if section_dict['Timestamp'] is True:
         print_single_run.timestamp(current_run)
 
-    if config.getboolean(single_run_config, 'SpecialSeed') is True:
+    if section_dict['SpecialSeed'] is True:
         print_single_run.special_seed(current_run)
 
-    if config.getboolean(single_run_config, 'SeedPlayed') is True:
+    if section_dict['SeedPlayed'] is True:
         print_single_run.seed_played(current_run)
 
-    if config.getboolean(single_run_config, 'Overview') is True:
+    if section_dict['Overview'] is True:
         print_single_run.details(current_run)
 
-    if config.getboolean(single_run_config, 'CharacterChosen') is True:
+    if section_dict['CharacterChosen'] is True:
         print_single_run.character_chosen(current_run)
 
-    if config.getboolean(single_run_config, 'Ascension') is True:
+    if section_dict['Ascension'] is True:
         print_single_run.ascension(current_run)
 
-    if config.getboolean(single_run_config, 'Victory') is True:
+    if section_dict['Victory'] is True:
         print_single_run.victory(current_run)
 
-    if config.getboolean(single_run_config, 'WinRate') is True:
+    if section_dict['WinRate'] is True:
         print_single_run.win_rate(current_run)
 
-    if config.getboolean(single_run_config, 'FloorReached') is True:
+    if section_dict['FloorReached'] is True:
         print_single_run.floor_reached(current_run)
 
-    if config.getboolean(single_run_config, 'Score') is True:
+    if section_dict['Score'] is True:
         print_single_run.score(current_run)
 
-    if config.getboolean(single_run_config, 'NeowBonus') is True:
+    if section_dict['NeowBonus'] is True:
         print_single_run.neow_bonus(current_run)
 
-    if config.getboolean(single_run_config, 'NeowCost') is True:
+    if section_dict['NeowCost'] is True:
         print_single_run.neow_cost(current_run)
 
-    if config.getboolean(single_run_config, 'CampfireRested') is True:
+    if section_dict['CampfireRested'] is True:
         print_single_run.campfire_rested(current_run)
 
-    if config.getboolean(single_run_config, 'CampfireUpgraded') is True:
+    if section_dict['CampfireUpgraded'] is True:
         print_single_run.campfire_upgraded(current_run)
 
-    if config.getboolean(single_run_config, 'ChosenSeed') is True:
+    if section_dict['ChosenSeed'] is True:
         print_single_run.chosen_seed(current_run)
 
-    if config.getboolean(single_run_config, 'CircletCount') is True:
+    if section_dict['CircletCount'] is True:
         print_single_run.circlet_count(current_run)
 
-    if config.getboolean(single_run_config, 'Gold') is True:
+    if section_dict['Gold'] is True:
         print_single_run.gold(current_run)
 
-    if config.getboolean(single_run_config, 'IsAscensionMode') is True:
+    if section_dict['IsAscensionMode'] is True:
         print_single_run.is_ascension_mode(current_run)
 
-    if config.getboolean(single_run_config, 'IsDaily') is True:
+    if section_dict['IsDaily'] is True:
         print_single_run.is_daily(current_run)
 
-    if config.getboolean(single_run_config, 'IsEndless') is True:
+    # Print: non-list json information
+    if section_dict['IsEndless'] is True:
         print_single_run.is_endless(current_run)
 
-    if config.getboolean(single_run_config, 'IsProd') is True:
+    if section_dict['IsProd'] is True:
         print_single_run.is_prod(current_run)
 
-    if config.getboolean(single_run_config, 'IsTrial') is True:
+    if section_dict['IsTrial'] is True:
         print_single_run.is_trial(current_run)
 
-    if config.getboolean(single_run_config, 'PlayId') is True:
+    if section_dict['PlayId'] is True:
         print_single_run.play_id(current_run)
 
-    if config.getboolean(single_run_config, 'PlayerExperience') is True:
+    if section_dict['PlayerExperience'] is True:
         print_single_run.player_experience(current_run)
 
-    if config.getboolean(single_run_config, 'Playtime') is True:
+    if section_dict['Playtime'] is True:
         print_single_run.playtime(current_run)
 
-    if config.getboolean(single_run_config, 'PurchasedPurges') is True:
+    if section_dict['PurchasedPurges'] is True:
         print_single_run.purchased_purges(current_run)
 
-    if config.getboolean(single_run_config, 'SeedSourceTimestamp') is True:
+    if section_dict['SeedSourceTimestamp'] is True:
         print_single_run.seed_source_timestamp(current_run)
 
     # Print: list json information
-    if config.getboolean(single_run_config, 'BossRelicPickedActOne') is True:
+    if section_dict['BossRelicPickedActOne'] is True:
         print_single_run.boss_relic_picked_act1(current_run)
 
-    if config.getboolean(single_run_config, 'BossRelicNotPickedActOne') is True:
+    if section_dict['BossRelicNotPickedActOne'] is True:
         print_single_run.boss_relic_not_picked_act1(current_run)
 
-    if config.getboolean(single_run_config, 'BossRelicPickedActTwo') is True:
+    if section_dict['BossRelicPickedActTwo'] is True:
         print_single_run.boss_relic_picked_act2(current_run)
 
-    if config.getboolean(single_run_config, 'BossRelicNotPickedActTwo') is True:
+    if section_dict['BossRelicNotPickedActTwo'] is True:
         print_single_run.boss_relic_not_picked_act2(current_run)
 
-    if config.getboolean(single_run_config, 'CampfireChoices') is True:
+    if section_dict['CampfireChoices'] is True:
         print_single_run.campfire_choices(current_run)
 
-    if config.getboolean(single_run_config, 'CardChoices') is True:
+    if section_dict['CardChoices'] is True:
         print_single_run.card_choices(current_run)
 
-    if config.getboolean(single_run_config, 'CurrentHpPerFloor') is True:
+    if section_dict['CurrentHpPerFloor'] is True:
         print_single_run.current_hp_per_floor(current_run)
 
-    if config.getboolean(single_run_config, 'DamageTaken') is True:
+    if section_dict['DamageTaken'] is True:
         print_single_run.damage_taken(current_run)
 
-    if config.getboolean(single_run_config, 'EventChoices') is True:
+    if section_dict['EventChoices'] is True:
         print_single_run.event_choices(current_run)
 
-    if config.getboolean(single_run_config, 'GoldPerFloor') is True:
+    if section_dict['GoldPerFloor'] is True:
         print_single_run.gold_per_floor(parsed, current_run)
 
-    if config.getboolean(single_run_config, 'ItemsPurchased') is True:
+    if section_dict['ItemsPurchased'] is True:
         print_single_run.items_purchased(current_run)
 
-    if config.getboolean(single_run_config, 'MasterDeck') is True:
+    if section_dict['MasterDeck'] is True:
         print_single_run.master_deck(current_run)
 
-    if config.getboolean(single_run_config, 'MaxHpPerFloor') is True:
+    if section_dict['MaxHpPerFloor'] is True:
         print_single_run.max_hp_per_floor(current_run)
 
-    if config.getboolean(single_run_config, 'PathPerFloor') is True:
+    if section_dict['PathPerFloor'] is True:
         print_single_run.path_per_floor(current_run)
 
-    if config.getboolean(single_run_config, 'PathTakenPerFloor') is True:
+    if section_dict['PathTakenPerFloor'] is True:
         print_single_run.path_taken_per_floor(current_run)
 
-    if config.getboolean(single_run_config, 'PotionsFloorSpawned') is True:
+    if section_dict['PotionsFloorSpawned'] is True:
         print_single_run.potions_floor_spawned(current_run)
 
-    if config.getboolean(single_run_config, 'PotionsFloorUsage') is True:
+    if section_dict['PotionsFloorUsage'] is True:
         print_single_run.potions_floor_usage(current_run)
 
-    if config.getboolean(single_run_config, 'PotionsObtained') is True:
+    if section_dict['PotionsObtained'] is True:
         print_single_run.potions_obtained(current_run)
 
-    if config.getboolean(single_run_config, 'Relics') is True:
+    if section_dict['Relics'] is True:
         print_single_run.relics(current_run)
 
-    if config.getboolean(single_run_config, 'RelicsObtained') is True:
+    if section_dict['RelicsObtained'] is True:
         print_single_run.relics_obtained(current_run)
 
 
@@ -331,10 +335,10 @@ def store_list_json(parsed, current_run):
 def main():
 
     # Declarations
-    config = read_config('config.ini')
-    target_path = read_target_path(config)
-    print_overview = read_config_boolean(config, 'PRINT_ALL_RUNS', 'Overview')
-    include_characters = config_option_to_list(config, 'DIRECTORIES', 'CharactersToInclude')
+    config = config_helper.read_config('config.ini')
+    target_path = config_helper.read_target_path(config)
+    print_overview = config.getboolean('PRINT_ALL_RUNS', 'Overview')
+    include_characters = [element.strip(' -') for element in config['DIRECTORIES']['CharactersToInclude'].split(',')]
     character_paths = create_character_paths(target_path, include_characters)
     run_set_dict = create_run_set_dict(include_characters)
 
@@ -402,4 +406,3 @@ def main():
 
 
 main()
-
