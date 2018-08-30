@@ -20,7 +20,8 @@ def section_to_bool_dict(config, section_name):
             (option, include) = option_boolean
             section_dict[option] = string_to_bool(include)
     else:
-        print("Section %s does not exist in the config" % section_name)
+        print("\nSection specified (%s) does not have a section in the config.")
+        print("Script will continue but results may not be accurate")
     return section_dict
 
 
@@ -31,3 +32,4 @@ def string_to_bool(string_boolean):
         return False
     else:
         print("Issue with string_to_bool function. Passed value %s" % string_boolean)
+        return None
