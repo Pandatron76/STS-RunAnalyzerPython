@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.pytest_cache/
+../.pytest_cache/
+
+# Unit test / coverage reports
+.coverage
+
+# JetBrains files
+.idea/
+./.idea/
+../.idea/
