@@ -7,6 +7,22 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_potions_floor_spawned():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_potions_floor_spawned = json.loads('{"potions_floor_spawned":[3,7,14,18,31,35,38,47]}')
+
+    store_json.potions_floor_spawned(mock_potions_floor_spawned, mock_run)
+
+    assert mock_run.potions_floor_spawned[0] == 3
+    assert mock_run.potions_floor_spawned[1] == 7
+    assert mock_run.potions_floor_spawned[2] == 14
+    assert mock_run.potions_floor_spawned[3] == 18
+    assert mock_run.potions_floor_spawned[4] == 31
+    assert mock_run.potions_floor_spawned[5] == 35
+    assert mock_run.potions_floor_spawned[6] == 38
+    assert mock_run.potions_floor_spawned[7] == 47
+
+
 def test_potions_floor_usage():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_potions_floor_usage = json.loads('{"potions_floor_usage":[7,16,29,33,33,33,44,48,50]}')
