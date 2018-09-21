@@ -7,6 +7,30 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_max_hp_per_floor_all():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_max_hp_per_floor_all = json.loads(
+        '{"max_hp_per_floor":[88,88,88,88,88,88,88,88,88,88,88,88,88,88,88,'
+        '88,88,92,96,96,100,104,108,108,108,108,108,112,112,116,'
+        '116,116,116,116,120,120,120,120,124,124,124,124,124,124,128,128,128,132,132,132]}'
+    )
+
+    store_json.max_hp_per_floor_all(mock_max_hp_per_floor_all, mock_run)
+
+    assert 88 in mock_run.max_hp_per_floor
+    assert 92 in mock_run.max_hp_per_floor
+    assert 96 in mock_run.max_hp_per_floor
+    assert 100 in mock_run.max_hp_per_floor
+    assert 104 in mock_run.max_hp_per_floor
+    assert 108 in mock_run.max_hp_per_floor
+    assert 112 in mock_run.max_hp_per_floor
+    assert 116 in mock_run.max_hp_per_floor
+    assert 120 in mock_run.max_hp_per_floor
+    assert 124 in mock_run.max_hp_per_floor
+    assert 128 in mock_run.max_hp_per_floor
+    assert 132 in mock_run.max_hp_per_floor
+
+
 def test_path_per_floor():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_path_per_floor = json.loads(
@@ -15,7 +39,6 @@ def test_path_per_floor():
         'null,"M","M","?","M","?","R","M","T","T","M","?","$","M","M","R","B"]}'
     )
 
-    print(mock_path_per_floor)
     store_json.path_per_floor(mock_path_per_floor, mock_run)
 
     assert "M" in mock_run.path_per_floor
