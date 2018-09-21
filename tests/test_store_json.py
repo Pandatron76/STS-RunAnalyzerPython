@@ -7,6 +7,26 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_path_per_floor():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_path_per_floor = json.loads(
+        '{"path_per_floor":["M","?","M","?","?","R","E","M","T","M","?","R","T","M","R","B",'
+        'null,"M","M","M","?","$","R","?","R","T","?","?","E","$","M","R","B",'
+        'null,"M","M","?","M","?","R","M","T","T","M","?","$","M","M","R","B"]}'
+    )
+
+    print(mock_path_per_floor)
+    store_json.path_per_floor(mock_path_per_floor, mock_run)
+
+    assert "M" in mock_run.path_per_floor
+    assert "?" in mock_run.path_per_floor
+    assert "R" in mock_run.path_per_floor
+    assert "E" in mock_run.path_per_floor
+    assert "T" in mock_run.path_per_floor
+    assert "B" in mock_run.path_per_floor
+    assert None in mock_run.path_per_floor
+
+
 def test_path_taken():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_path_taken = json.loads(
