@@ -7,6 +7,24 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_path_taken():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_path_taken = json.loads(
+        '{"path_taken":["M","?","M","?","?","R","E","M","T","?","?","R","?","M","R","BOSS",'
+        '"M","M","M","?","$","R","?","R","T","?","?","E","$","M","R","BOSS",'
+        '"M","M","?","M","?","R","M","?","T","?","?","?","M","M","R","BOSS"]}'
+    )
+
+    store_json.path_taken(mock_path_taken, mock_run)
+
+    assert "M" in mock_run.path_taken
+    assert "?" in mock_run.path_taken
+    assert "$" in mock_run.path_taken
+    assert "E" in mock_run.path_taken
+    assert "R" in mock_run.path_taken
+    assert "BOSS" in mock_run.path_taken
+
+
 def test_potions_floor_spawned():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_potions_floor_spawned = json.loads('{"potions_floor_spawned":[3,7,14,18,31,35,38,47]}')
