@@ -1,3 +1,4 @@
+from sts_run_history_analyzer.sts_run_data import *
 import configparser
 
 
@@ -89,3 +90,7 @@ def config():
                                        }
 
     return mock_config
+
+
+def sts_run_data(run_name):
+    return STSRunData(run_name)
