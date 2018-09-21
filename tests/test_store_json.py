@@ -7,6 +7,33 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_potions_obtained():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_potions_obtained = json.loads(
+        '{"potions_obtained":[{"floor":3,"key":"Block Potion"},'
+        '{"floor":7,"key":"AttackPotion"},'
+        '{"floor":14,"key":"LiquidBronze"},'
+        '{"floor":18,"key":"Weak Potion"},'
+        '{"floor":31,"key":"EntropicBrew"}]}')
+
+    store_json.potions_obtained(mock_potions_obtained, mock_run)
+
+    assert mock_run.potions_obtained[0].floor == 3
+    assert mock_run.potions_obtained[0].key == "Block Potion"
+
+    assert mock_run.potions_obtained[1].floor == 7
+    assert mock_run.potions_obtained[1].key == "AttackPotion"
+
+    assert mock_run.potions_obtained[2].floor == 14
+    assert mock_run.potions_obtained[2].key == "LiquidBronze"
+
+    assert mock_run.potions_obtained[3].floor == 18
+    assert mock_run.potions_obtained[3].key == "Weak Potion"
+
+    assert mock_run.potions_obtained[4].floor == 31
+    assert mock_run.potions_obtained[4].key == "EntropicBrew"
+
+
 def test_relic():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_relics = json.loads(
