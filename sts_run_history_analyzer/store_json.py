@@ -180,6 +180,7 @@ def relics(parsed, current_run):
     return current_run
 
 
+# TODO: Refactor to store the value in the sts_run_data as a dict rather than a 'relics_obtained' object
 def relics_obtained(parsed, current_run):
     if 'relics_obtained' in parsed:
         for element in parsed['relics_obtained']:

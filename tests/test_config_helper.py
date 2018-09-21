@@ -1,5 +1,10 @@
-from sts_run_history_analyzer import config_helper
-from tests import create_mock
+import sys
+import os
+
+sys.path.append(os.path.realpath(os.path.dirname(__file__) + "/../sts_run_history_analyzer"))
+
+from sts_run_history_analyzer import config_helper  # noqa
+from tests import create_mock  # noqa
 
 
 def test_target_path():
