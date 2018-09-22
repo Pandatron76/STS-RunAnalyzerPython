@@ -7,6 +7,31 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_damage_taken():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_damage_taken = json.loads(
+        '{"damage_taken":[{"damage":10,"enemies":"Cultist","floor":1,"turns":5},'
+        '{"damage":8,"enemies":"Jaw Worm","floor":2,"turns":5},'
+        '{"damage":0,"enemies":"2 Louse","floor":3,"turns":4}]}')
+
+    store_json.damage_taken(mock_damage_taken, mock_run)
+
+    assert mock_run.damage_taken[0].damage == 10
+    assert mock_run.damage_taken[0].enemies == "Cultist"
+    assert mock_run.damage_taken[0].floor == 1
+    assert mock_run.damage_taken[0].turns == 5
+
+    assert mock_run.damage_taken[1].damage == 8
+    assert mock_run.damage_taken[1].enemies == "Jaw Worm"
+    assert mock_run.damage_taken[1].floor == 2
+    assert mock_run.damage_taken[1].turns == 5
+
+    assert mock_run.damage_taken[2].damage == 0
+    assert mock_run.damage_taken[2].enemies == "2 Louse"
+    assert mock_run.damage_taken[2].floor == 3
+    assert mock_run.damage_taken[2].turns == 4
+
+
 def test_gold_per_floor_all():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_gold_per_floor_all = json.loads(
