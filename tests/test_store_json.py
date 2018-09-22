@@ -7,6 +7,24 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_items_purchased_all():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_items_purchased_all = json.loads(
+        '{"items_purchased":["Metallicize",'
+        '"Armaments",'
+        '"Bottled Lightning",'
+        '"Metallicize",'
+        '"Energy Potion"]}'
+    )
+
+    store_json.items_purchased_all(mock_items_purchased_all, mock_run)
+
+    assert "Metallicize" in mock_run.items_purchased
+    assert "Armaments" in mock_run.items_purchased
+    assert "Bottled Lightning" in mock_run.items_purchased
+    assert "Energy Potion" in mock_run.items_purchased
+
+
 def test_master_deck_all():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_master_deck_all = json.loads(
