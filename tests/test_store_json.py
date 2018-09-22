@@ -7,6 +7,23 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_gold_per_floor_all():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_gold_per_floor_all = json.loads(
+        '{"gold_per_floor":[111, 126, 3, 18, 18, 18, 18, 18, 18, 53, 53, 80, 30, 41, 41, '
+        '143, 143, 159, 170, 180, 196, 121, 121, 176, 187, 213, 231, 231, 246, 246, '
+        '273, 273, 373, 373, 387, 397, 40, 54, 54]}'
+    )
+
+    store_json.gold_per_floor_all(mock_gold_per_floor_all, mock_run)
+
+    assert 111 in mock_run.gold_per_floor
+    assert 18 in mock_run.gold_per_floor
+    assert 3 in mock_run.gold_per_floor
+    assert 0 not in mock_run.gold_per_floor
+    assert -1 not in mock_run.gold_per_floor
+
+
 def test_items_purchased_all():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_items_purchased_all = json.loads(
