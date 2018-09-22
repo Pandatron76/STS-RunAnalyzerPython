@@ -7,6 +7,29 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_master_deck_all():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_master_deck_all = json.loads(
+        '{"master_deck":["Strike_R+1","Strike_R","Strike_R","Strike_R","Defend_R",'
+        '"Defend_R+1","Defend_R+1","Defend_R+1","Bash","Whirlwind",'
+        '"Anger","Headbutt","Rampage","Metallicize","Pommel Strike"]}'
+    )
+
+    store_json.master_deck_all(mock_master_deck_all, mock_run)
+
+    assert "Strike_R+1" in mock_run.master_deck
+    assert "Strike_R" in mock_run.master_deck
+    assert "Defend_R" in mock_run.master_deck
+    assert "Defend_R+1" in mock_run.master_deck
+    assert "Bash" in mock_run.master_deck
+    assert "Whirlwind" in mock_run.master_deck
+    assert "Anger" in mock_run.master_deck
+    assert "Headbutt" in mock_run.master_deck
+    assert "Rampage" in mock_run.master_deck
+    assert "Metallicize" in mock_run.master_deck
+    assert "Pommel Strike" in mock_run.master_deck
+
+
 def test_max_hp_per_floor_all():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_max_hp_per_floor_all = json.loads(
