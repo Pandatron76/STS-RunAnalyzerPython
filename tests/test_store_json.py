@@ -7,6 +7,44 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_event_choices():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_event_choices = json.loads(
+        '{"event_choices":[{"event_name":"Liars Game","player_choice":"disagreed","floor":3.0,"damage_taken":0.0},'
+        '{"event_name":"Scrap Ooze","player_choice":"success","floor":4.0,"damage_taken":7.0},'
+        '{"event_name":"The Joust","player_choice":"Bet on Murderer","floor":19.0,"damage_taken":0.0},'
+        '{"event_name":"Vampires","player_choice":"Became a vampire","floor":30.0,"damage_taken":0.0},'
+        '{"event_name":"WeMeetAgain","player_choice":"Card","floor":31.0,"damage_taken":0.0}]}'
+    )
+
+    store_json.event_choices(mock_event_choices, mock_run)
+
+    assert mock_run.event_choices[0].event_name == "Liars Game"
+    assert mock_run.event_choices[0].player_choice == "disagreed"
+    assert mock_run.event_choices[0].floor == 3.0
+    assert mock_run.event_choices[0].damage_taken == 0.0
+
+    assert mock_run.event_choices[1].event_name == "Scrap Ooze"
+    assert mock_run.event_choices[1].player_choice == "success"
+    assert mock_run.event_choices[1].floor == 4.0
+    assert mock_run.event_choices[1].damage_taken == 7.0
+
+    assert mock_run.event_choices[2].event_name == "The Joust"
+    assert mock_run.event_choices[2].player_choice == "Bet on Murderer"
+    assert mock_run.event_choices[2].floor == 19.0
+    assert mock_run.event_choices[2].damage_taken == 0.0
+
+    assert mock_run.event_choices[3].event_name == "Vampires"
+    assert mock_run.event_choices[3].player_choice == "Became a vampire"
+    assert mock_run.event_choices[3].floor == 30.0
+    assert mock_run.event_choices[3].damage_taken == 0.0
+
+    assert mock_run.event_choices[4].event_name == "WeMeetAgain"
+    assert mock_run.event_choices[4].player_choice == "Card"
+    assert mock_run.event_choices[4].floor == 31.0
+    assert mock_run.event_choices[4].damage_taken == 0.0
+
+
 def test_damage_taken():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_damage_taken = json.loads(
