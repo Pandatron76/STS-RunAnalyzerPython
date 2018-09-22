@@ -7,6 +7,24 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_current_hp_per_floor():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_current_hp_per_floor = json.loads('{"current_hp_per_floor":[32,30,36,36,22,46,46,46,46,39,39,35,32,32,56,0]}')
+
+    store_json.current_hp_per_floor(mock_current_hp_per_floor, mock_run)
+
+    assert 32 in mock_run.current_hp_per_floor
+    assert 30 in mock_run.current_hp_per_floor
+    assert 36 in mock_run.current_hp_per_floor
+    assert 22 in mock_run.current_hp_per_floor
+    assert 46 in mock_run.current_hp_per_floor
+    assert 39 in mock_run.current_hp_per_floor
+    assert 35 in mock_run.current_hp_per_floor
+    assert 32 in mock_run.current_hp_per_floor
+    assert 56 in mock_run.current_hp_per_floor
+    assert 0 in mock_run.current_hp_per_floor
+
+
 def test_event_choices():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_event_choices = json.loads(
