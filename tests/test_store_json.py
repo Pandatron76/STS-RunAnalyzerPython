@@ -7,6 +7,38 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_campfire_choices():
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_campfire_choice = json.loads(
+        '{"campfire_choices":[{"data":"True Grit","floor":6.0,"key":"SMITH"},'
+        '{"floor":8.0,"key":"REST"},'
+        '{"data":"Bash","floor":10.0,"key":"SMITH"},'
+        '{"data":"Pommel Strike","floor":12.0,"key":"SMITH"},'
+        '{"data":"Feel No Pain","floor":15.0,"key":"SMITH"}]}'
+    )
+
+    store_json.campfire_choice(mock_campfire_choice, mock_run)
+
+    assert mock_run.campfire_choices[0].floor == 6.0
+    assert mock_run.campfire_choices[0].key == "SMITH"
+    assert mock_run.campfire_choices[0].data == "True Grit"
+
+    assert mock_run.campfire_choices[1].floor == 8.0
+    assert mock_run.campfire_choices[1].key == "REST"
+
+    assert mock_run.campfire_choices[2].floor == 10.0
+    assert mock_run.campfire_choices[2].key == "SMITH"
+    assert mock_run.campfire_choices[2].data == "Bash"
+
+    assert mock_run.campfire_choices[3].floor == 12.0
+    assert mock_run.campfire_choices[3].key == "SMITH"
+    assert mock_run.campfire_choices[3].data == "Pommel Strike"
+
+    assert mock_run.campfire_choices[4].floor == 15.0
+    assert mock_run.campfire_choices[4].key == "SMITH"
+    assert mock_run.campfire_choices[4].data == "Feel No Pain"
+
+
 def test_current_hp_per_floor():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_current_hp_per_floor = json.loads('{"current_hp_per_floor":[32,30,36,36,22,46,46,46,46,39,39,35,32,32,56,0]}')
