@@ -7,8 +7,58 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
-def test_card_choices():
+def test_boss_relic_info():
+    mock_run_00 = create_mock.sts_run_data('0123456789.run')
+    mock_run_01 = create_mock.sts_run_data('0123456788.run')
+    mock_run_02 = create_mock.sts_run_data('0123456787.run')
+    mock_run_03 = create_mock.sts_run_data('0123456786.run')
 
+    mock_boss_relic_info_00 = json.loads(
+        '{"boss_relics":[{"not_picked":["Lizard Tail","Hovering Kite","Calling Bell"]},'
+        '{"not_picked":["Runic Dome","Ring of the Serpent","Coffee Dripper"]}]}')
+
+    mock_boss_relic_info_01 = json.loads(
+        '{"boss_relics":[{"not_picked":["Ring of the Serpent","Sozu"],"picked":"Ectoplasm"},'
+        '{"not_picked":["Runic Dome","Velvet Choker","Coffee Dripper"]}]}')
+
+    mock_boss_relic_info_02 = json.loads(
+        '{"boss_relics":[{"not_picked":["Philosopher\u0027s Stone","Pandora\u0027s Box","Ectoplasm"]}]}')
+
+    mock_boss_relic_info_03 = json.loads(
+        '{"boss_relics":[{"not_picked":["Sozu","Black Star"],"picked":"Fusion Hammer"},'
+        '{"not_picked":["Calling Bell","Eternal Feather"],"picked":"Busted Crown"}]}')
+
+    store_json.boss_relic_info(mock_boss_relic_info_00, mock_run_00)
+    store_json.boss_relic_info(mock_boss_relic_info_01, mock_run_01)
+    store_json.boss_relic_info(mock_boss_relic_info_02, mock_run_02)
+    store_json.boss_relic_info(mock_boss_relic_info_03, mock_run_03)
+
+    # 00
+    assert "No boss relic was picked for Act One" == mock_run_00.boss_relic_picked_act1
+    assert ["Lizard Tail", "Hovering Kite", "Calling Bell"] == mock_run_00.boss_relic_not_picked_act1
+    assert "No boss relic was picked for Act Two" == mock_run_00.boss_relic_picked_act2
+    assert ["Runic Dome", "Ring of the Serpent", "Coffee Dripper"] == mock_run_00.boss_relic_not_picked_act2
+
+    # 01
+    assert "Ectoplasm" == mock_run_01.boss_relic_picked_act1
+    assert ["Ring of the Serpent", "Sozu"] == mock_run_01.boss_relic_not_picked_act1
+    assert "No boss relic was picked for Act Two" == mock_run_01.boss_relic_picked_act2
+    assert ["Runic Dome", "Velvet Choker", "Coffee Dripper"] == mock_run_01.boss_relic_not_picked_act2
+
+    # 02
+    assert "No boss relic was picked for Act One" == mock_run_02.boss_relic_picked_act1
+    assert ["Philosopher\u0027s Stone", "Pandora\u0027s Box", "Ectoplasm"] == mock_run_02.boss_relic_not_picked_act1
+    assert not mock_run_02.boss_relic_picked_act2
+    assert not mock_run_02.boss_relic_not_picked_act2
+
+    # 03
+    assert "Fusion Hammer" == mock_run_03.boss_relic_picked_act1
+    assert ["Sozu", "Black Star"] == mock_run_03.boss_relic_not_picked_act1
+    assert "Busted Crown" == mock_run_03.boss_relic_picked_act2
+    assert ["Calling Bell", "Eternal Feather"] == mock_run_03.boss_relic_not_picked_act2
+
+
+def test_card_choices():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_card_choices = json.loads(
         '{"card_choices":[{"not_picked":["Body Slam","Cleave"],"picked":"Uppercut","floor":1},'
