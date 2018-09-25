@@ -7,6 +7,40 @@ from sts_run_history_analyzer import store_json  # noqa
 from tests import create_mock  # noqa
 
 
+def test_card_choices():
+
+    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_card_choices = json.loads(
+        '{"card_choices":[{"not_picked":["Body Slam","Cleave"],"picked":"Uppercut","floor":1},'
+        '{"not_picked":["Iron Wave","Bloodletting"],"picked":"Pommel Strike","floor":2},'
+        '{"not_picked":["Twin Strike","Thunderclap"],"picked":"Iron Wave","floor":4},'
+        '{"not_picked":["Havoc","Thunderclap","Iron Wave"],"picked":"SKIP","floor":10},'
+        '{"not_picked":["Perfected Strike","Flex","Fire Breathing"],"picked":"SKIP","floor":12}]}'
+    )
+
+    store_json.card_choices(mock_card_choices, mock_run)
+
+    assert mock_run.card_choices[0].floor == 1
+    assert mock_run.card_choices[0].picked == "Uppercut"
+    assert ["Body Slam", "Cleave"] == mock_run.card_choices[0].not_picked
+
+    assert mock_run.card_choices[1].floor == 2
+    assert mock_run.card_choices[1].picked == "Pommel Strike"
+    assert ["Iron Wave", "Bloodletting"] == mock_run.card_choices[1].not_picked
+
+    assert mock_run.card_choices[2].floor == 4
+    assert mock_run.card_choices[2].picked == "Iron Wave"
+    assert ["Twin Strike", "Thunderclap"] == mock_run.card_choices[2].not_picked
+
+    assert mock_run.card_choices[3].floor == 10
+    assert mock_run.card_choices[3].picked == "SKIP"
+    assert ["Havoc", "Thunderclap", "Iron Wave"] == mock_run.card_choices[3].not_picked
+
+    assert mock_run.card_choices[4].floor == 12
+    assert mock_run.card_choices[4].picked == "SKIP"
+    assert ["Perfected Strike", "Flex", "Fire Breathing"] == mock_run.card_choices[4].not_picked
+
+
 def test_campfire_choices():
     mock_run = create_mock.sts_run_data('0123456789.run')
     mock_campfire_choice = json.loads(
