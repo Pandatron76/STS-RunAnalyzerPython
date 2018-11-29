@@ -6,5 +6,5 @@ from tests import create_mock  # noqa
 
 
 def test_current_run():
-    mock_run = create_mock.sts_run_data('0123456789.run')
+    mock_run = create_mock.sts_run_data('0123456789.run_data')
     assert mock_run.starting_gold == 99

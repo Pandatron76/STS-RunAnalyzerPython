@@ -1,13 +1,4 @@
 # try/excepts are in place to account for users who have unlocked but not played a character
-import calculate_total
-
-
-def campfire_rested(run_set):
-    while True:
-        try:
-            return calculate_total.campfire_rested(run_set) / len(run_set)
-        except ZeroDivisionError:
-            return 0
 
 
 def score(run_set):
@@ -24,22 +15,6 @@ def score(run_set):
     while True:
         try:
             return total_score / (len(run_set) - no_score_count)
-        except ZeroDivisionError:
-            return 0
-
-
-def campfire_upgraded(run_set):
-    while True:
-        try:
-            return calculate_total.campfire_upgraded(run_set) / len(run_set)
-        except ZeroDivisionError:
-            return 0
-
-
-def campfires_visited(run_set):
-    while True:
-        try:
-            return calculate_total.campfire_visited(run_set) / len(run_set)
         except ZeroDivisionError:
             return 0
 
