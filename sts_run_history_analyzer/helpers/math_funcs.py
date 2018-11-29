@@ -1,8 +1,6 @@
 # Holds computational functions that cannot be directly derived from the json
 import collections
 
-from calculate_total import campfire_rested
-
 
 def cards_picked_per_floor(run_set):
     floor_picked_dict = {}
@@ -21,54 +19,6 @@ def cards_picked_per_floor(run_set):
 
     print("No floor count (Card Choice): %s" % no_floor_count)
 
-    return floor_picked_dict
-
-
-def campfire_rested_per_floor(run_set):
-    floor_rest_dict = {}
-    campfire_rested_count = 0
-
-    for run in run_set:
-        for choice in run.campfire_choices:
-            if choice.key == 'REST':
-                campfire_rested_count += 1
-                if choice.floor not in floor_rest_dict.keys():
-                    floor_rest_dict.update({int(round(choice.floor)): 1})
-                elif choice.floor in floor_rest_dict.keys():
-                    floor_rest_dict[int(round(choice.floor))] += 1
-                else:
-                    print('Issue with campfire_rested_per_floor inner loop, run.campfire_choices')
-
-    print("Note: %s of the campfire rest choices do not have detailed information in the json \n" %
-          (campfire_rested(run_set) - campfire_rested_count))
-
-    return floor_rest_dict
-
-
-def campfire_upgrades_per_floor(run_set):
-    floor_picked_dict = {}
-    runids_wo_floors = []
-    no_choice_count = 0
-
-    for run in run_set:
-        for choice in run.campfire_choices:
-            if not choice.key:
-                no_choice_count += 1
-                runids_wo_floors.append(run.id)
-            elif choice.key:
-                if choice.key == 'SMITH':
-                    current_campfire_choices = []
-                    for k, v in floor_picked_dict.items():
-                        if int(k) == int(choice.floor):
-                            current_campfire_choices.append(v)
-
-                    current_campfire_choices.append(choice.data)
-                    flatten_picks = flatten_word_list(current_campfire_choices)
-                    floor_picked_dict.update({int(round(choice.floor)): flatten_picks})
-            else:
-                print("Issue with math_funcs.campfire_upgrades_per_floor")
-
-    print('\n')
     return floor_picked_dict
 
 
@@ -186,9 +136,11 @@ def highest_max_hp(run_set):
     highest_max_hp_all = 0
     file_name = ''
     for run in run_set:
-        if max(run.max_hp_per_floor) > highest_max_hp_all:
-            highest_max_hp_all = max(run.max_hp_per_floor)
-            file_name = run.id
+        # An empty set evaluates to 0 if it is empty. At least one value should exist in max_hp_per_floor
+        if run.max_hp_per_floor is False:
+            if max(run.max_hp_per_floor) > highest_max_hp_all:
+                highest_max_hp_all = max(run.max_hp_per_floor)
+                file_name = run.id
 
     return highest_max_hp_all, file_name
 
@@ -234,9 +186,11 @@ def lowest_max_hp(run_set):
     lowest_max_hp_all = 99999
     file_name = ''
     for run in run_set:
-        if min(run.max_hp_per_floor) < lowest_max_hp_all:
-            lowest_max_hp_all = min(run.max_hp_per_floor)
-            file_name = run.id
+        # An empty set evaluates to 0 if it is empty. At least one value should exist in max_hp_per_floor
+        if run.max_hp_per_floor:
+            if min(run.max_hp_per_floor) < lowest_max_hp_all:
+                lowest_max_hp_all = min(run.max_hp_per_floor)
+                file_name = run.id
 
     return lowest_max_hp_all, file_name
 
@@ -257,9 +211,10 @@ def most_gold_held(run_set):
     gold_spent = 0
     file_name = ''
     for run in run_set:
-        if gold_spent < max(run.gold_per_floor):
-            gold_spent = max(run.gold_per_floor)
-            file_name = run.id
+        if run.gold_per_floor:
+            if gold_spent < max(run.gold_per_floor):
+                gold_spent = max(run.gold_per_floor)
+                file_name = run.id
 
     return gold_spent, file_name
 
@@ -314,7 +269,8 @@ def potions_obtained_stats(run_set):
             else:
                 print("Issue with math_funcs.potions_obtained_stats")
 
-    print("No floor count (Potions Obtained) %s" % no_floor_count)
+    # Debugging purposes. To check for any potions that were not recorded.
+    # print("Potions without floor data (Potions Obtained): %s" % no_floor_count)
 
     return potions_obtained_dict
 
